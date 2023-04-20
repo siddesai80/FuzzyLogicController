@@ -1,0 +1,55 @@
+[System]
+Name='MobileRobot'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='distance_to_wall_left'
+Range=[0 5]
+NumMFs=3
+MF1='close':'trimf',[-2.08333 0 1.5]
+MF2='medium':'trimf',[0.991960580912863 2.5 3.98988589211618]
+MF3='far':'trimf',[3.5 5 7.08333]
+
+[Input2]
+Name='distance_to_wall_right'
+Range=[0 5]
+NumMFs=3
+MF1='close':'trimf',[-2.08333 0 1.5]
+MF2='medium':'trimf',[0.986773858921162 2.5 3.98469917012448]
+MF3='far':'trimf',[3.5 5 7.08333]
+
+[Output1]
+Name='turning_angle'
+Range=[-45 45]
+NumMFs=3
+MF1='gentle':'trimf',[-82.5 -45 -20.1395348837209]
+MF2='moderate':'trimf',[-30.093023255814 0 29.7209302325582]
+MF3='sharp':'trimf',[19.8604651162791 44.906976744186 82.406976744186]
+
+[Output2]
+Name='speed'
+Range=[0 30]
+NumMFs=3
+MF1='slow':'trimf',[-12.5 0 9.95080269290523]
+MF2='normal':'trimf',[7.24754013464526 15 22.7524598653547]
+MF3='fast':'trimf',[19.9559813568099 30 42.5]
+
+[Rules]
+1 1, 1 1 (1) : 1
+2 1, 2 2 (1) : 1
+3 1, 3 2 (1) : 1
+1 2, 2 2 (1) : 1
+2 2, 0 3 (1) : 1
+3 2, 2 2 (1) : 1
+1 3, 3 2 (1) : 1
+2 3, 2 2 (1) : 1
+3 3, 3 3 (1) : 1
